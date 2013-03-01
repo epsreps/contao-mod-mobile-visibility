@@ -10,7 +10,10 @@
  * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  */
 
+if(TL_MODE == 'BE')
+{
 $GLOBALS['TL_MOOTOOLS'][] = '<script src="system/modules/kiss_mobile-visibility/assets/backend.js"></script>';
+}
 
 $GLOBALS['TL_HOOKS']['getContentElement'][] = array('kiss_mobile_visibility_helper', 'gateKeeperContent');
 
