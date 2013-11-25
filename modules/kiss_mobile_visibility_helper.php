@@ -184,6 +184,15 @@ class kiss_mobile_visibility_helper extends Backend {
 
         if (is_array($obj->items)) {
             for($k = 0; $k < count($obj->items); $k++){
+
+/* Menüeinträge, die nicht im Seitenbaum enthalten sind. z.bsp. archivmenueinträge mit get parameter */         
+          	if($obj->items[$k] == false ){ 
+          	  $keys = array_keys($obj->items); 
+					foreach ($keys as $key ){
+					if( !$s ) $new[] = $obj->items[$key] ;
+					} $s = 1;
+          	}
+                
                 if ($obj->items[$k]['mobile_invisible'] && $is_mobile) {
                     continue;
                 }
@@ -192,7 +201,7 @@ class kiss_mobile_visibility_helper extends Backend {
                     continue;
                 }
 
-                $new[] = $obj->items[$k];
+               if( !$s ) $new[] = $obj->items[$k];
             }
 
             $obj->items = $new;
